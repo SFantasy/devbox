@@ -1,0 +1,34 @@
+// Module dependencies
+const electron = require('electron')
+
+const app = electron.app
+const BrowserWindow = electron.BrowserWindow
+
+let mainWindow = null
+
+const debug = /--debug/.test(process.argv[2])
+
+function createWindow () {
+  mainWindow = new BrowserWindow({
+    width: 1024,
+    height: 600,
+    frame: false,
+    titleBarStyle: 'hidden'
+  })
+
+  mainWindow.loadURL(`file://${__dirname}/index.html`)
+
+  mainWindow.on('close', () => {
+    mainWindow = null
+  })
+}
+
+app.on('ready', createWindow)
+
+app.on('all-window-close', () => {
+  if (process.platform !== 'darwin') app.quit()
+})
+
+app.on('activate', () => {
+  if (mainWindow === null) createWindow()
+})
