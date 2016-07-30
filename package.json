@@ -1,5 +1,6 @@
 {
-  "name": "devbox",
+  "name": "DevBox",
+  "private": true,
   "version": "0.0.1",
   "description": "An Desktop application for developers",
   "author": "Fantasy <fantasyshao@icloud.com>",
@@ -11,9 +12,15 @@
   },
   "scripts": {
     "start": "electron .",
-    "dev": "electron . --debug"
+    "dev": "electron . --debug",
+    "webpack:build": "NODE_ENV=production webpack --config webpack.production.config.js--progress -v -c -p",
+    "webpack:watch": "webpack --progress -v -c --watch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "electron-prebuilt": "^1.3.1"
+  },
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-core": "^6.11.4",
@@ -22,13 +29,13 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
-    "electron-prebuilt": "^1.3.1",
+    "file-loader": "^0.9.0",
     "node-sass": "^3.8.0",
-    "react": "^15.2.1",
-    "react-dom": "^15.2.1",
+    "octicons": "^4.3.0",
     "react-router": "^2.6.0",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.1"
   }
 }
