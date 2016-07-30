@@ -18,6 +18,8 @@ function createWindow () {
 
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 
+  if (debug) mainWindow.webContents.openDevTools()
+
   mainWindow.on('close', () => {
     mainWindow = null
   })
