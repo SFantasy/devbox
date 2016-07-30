@@ -1,5 +1,5 @@
 {
-  "name": "DevBox",
+  "name": "devbox",
   "private": true,
   "version": "0.0.1",
   "description": "An Desktop application for developers",
@@ -30,6 +30,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
     "file-loader": "^0.9.0",
+    "json-loader": "^0.5.4",
     "node-sass": "^3.8.0",
     "octicons": "^4.3.0",
     "react-router": "^2.6.0",
