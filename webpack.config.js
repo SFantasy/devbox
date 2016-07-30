@@ -4,7 +4,7 @@ var webpack = require('webpack')
 module.exports = {
   name: 'devbox-app',
 
-  devtool: 'eval',
+  devtool: 'cheap-source-map',
 
   entry: [
     './src/app'
@@ -21,8 +21,14 @@ module.exports = {
       loaders: ['babel'],
       exclude: /node_modules/
     }, {
+      test: /\.css$/,
+      loader: 'style!css'
+    }, {
       test: /\.scss$/,
       loader: 'style!css!sass'
+    }, {
+      test: /\.(png|woff|woff2|eot|ttf|svg)/,
+      loader: 'url-loader?limit=100000'
     }]
   },
 
