@@ -10,6 +10,8 @@ const debug = /--debug/.test(process.argv[2])
 
 function createWindow () {
   mainWindow = new BrowserWindow({
+    minWidth: 800,
+    minHeight: 400,
     width: 1024,
     height: 600,
     frame: false,
