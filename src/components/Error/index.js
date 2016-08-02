@@ -6,7 +6,7 @@ export default class Error extends Component {
   render () {
     return (
       <Layout>
-        <h1 className='page-title'>ERROR NOT FOUND</h1>
+        <p className='page-msg'>You've been out of box!</p>
       </Layout>
     )
   }
