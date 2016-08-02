@@ -1,6 +1,6 @@
 // Module dependencies
 const electron = require('electron')
-
+const shell = electron.shell;
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
@@ -21,6 +21,13 @@ function createWindow () {
   mainWindow.loadURL(`file://${__dirname}/index.html`)
 
   if (debug) mainWindow.webContents.openDevTools()
+
+  mainWindow.webContents.on('will-navigate', (e, url) => {
+    if (url != mainWindow.webContents.getURL()) {
+      e.preventDefault()
+      shell.openExternal(url)
+    }
+  });
 
   mainWindow.on('close', () => {
     mainWindow = null
