@@ -44,4 +44,34 @@
 
 .container {
   padding: 0 20px;
+  width: calc(100vw - 180px);
+
+  .page-title {
+    color: #333;
+    font-size: 32px;
+    font-weight: 200;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #e2e2e2;
+  }
+
+  .page-msg {
+    color: #666;
+    font-size: 20px;
+  }
+
+  .page-md {
+    color: #333;
+
+    h2 {
+      font-weight: 200;
+    }
+
+    a {
+      color: #666;
+      text-decoration: underline;
+      &:hover {
+        color: #333;
+      }
+    }
+  }
 }
