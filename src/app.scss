@@ -19,4 +19,8 @@ a {
   text-decoration: none;
 }
 
+select, input, button, textarea {
+  outline: none;
+}
+
 @import "~octicons/build/font/octicons.css";
