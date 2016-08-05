@@ -7,6 +7,8 @@
 }
 
 .nav {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
   margin: 0;
   padding: 22px 0 0 0;
   width: 180px;
@@ -51,6 +53,8 @@
   width: calc(100vw - 180px);
 
   .page-title {
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
     color: #333;
     font-size: 32px;
     font-weight: 200;
