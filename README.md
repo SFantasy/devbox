@@ -3,6 +3,8 @@ DevBox
 
 An Desktop application for developers.
 
+![devbox](./screenshot/home.png)
+
 ## Building
 
 ```sh
