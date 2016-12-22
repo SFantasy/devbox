@@ -1,9 +1,5 @@
 // Module dependencies
-const electron = require('electron');
-
-const shell = electron.shell;
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const { shell, app, BrowserWindow } = require('electron');
 
 let mainWindow = null;
 
@@ -19,7 +15,11 @@ function createWindow() {
     titleBarStyle: 'hidden',
   });
 
-  mainWindow.loadURL(`file://${__dirname}/index.html`);
+  mainWindow.loadURL(
+    process.env.NODE_ENV === 'development' ?
+      `file://${__dirname}/index.html` :
+      'http://localhost:3000'
+  );
 
   if (debug) mainWindow.webContents.openDevTools();
 
