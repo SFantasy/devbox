@@ -2,6 +2,8 @@
  * Module dependencies
  */
 
+/* eslint-env browser */
+
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, hashHistory } from 'react-router';
@@ -13,6 +15,4 @@ const Home = () => (
 render(
   <Router history={hashHistory}>
     <Route path="/" component={Home} />
-  </Router>,
-  document.getElementById('app')
-);
+  </Router>, document.getElementById('app'));
