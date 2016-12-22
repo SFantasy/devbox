@@ -1,18 +1,19 @@
-/**
- * Module dependencies
- */
-
 /* eslint-env browser */
 
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import 'antd/dist/antd.css';
 
-const Home = () => (
-  <h1>DevBox</h1>
-);
+import Layout from './Layout';
+import Home from './Home';
+import Encoder from './Encoder';
+import './app.scss';
 
 render(
   <Router history={hashHistory}>
-    <Route path="/" component={Home} />
+    <Route path="/" component={Layout}>
+      <IndexRoute component={Home} />
+      <Route path="/encoder" component={Encoder} />
+    </Route>
   </Router>, document.getElementById('app'));
