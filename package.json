@@ -12,11 +12,11 @@
     "url": "git+https://github.com/SFantasy/devbox.git"
   },
   "scripts": {
-    "start": "electron .",
-    "dev": "electron . --debug",
+    "start": "node server.js",
+    "app": "electron .",
+    "app-dev": "electron . --debug",
     "lint": "./node_modules/.bin/eslint src/ main.js",
-    "webpack:build": "NODE_ENV=production webpack --config webpack.production.config.js--progress -v -c -p",
-    "webpack:watch": "webpack --progress -v -c --watch"
+    "webpack:build": "NODE_ENV=production webpack --config webpack.production.config.js --progress --profile -c -p"
   },
   "dependencies": {
     "antd": "^2.5.2",
@@ -34,6 +34,7 @@
     "babel-preset-react-app": "^2.0.1",
     "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.26.1",
+    "electron-devtools-installer": "^2.0.1",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
     "express": "^4.14.0",
