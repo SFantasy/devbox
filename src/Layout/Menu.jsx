@@ -13,7 +13,7 @@ export default class AppMenu extends Component {
     return (
       <Menu className="menu">
         <MenuItem key="home" disabled>
-          <h1 className="brand">DevBox</h1>
+          <Link to="/"><h1 className="brand">DevBox</h1></Link>
         </MenuItem>
         <Divider />
         <MenuItem key="encoder">
