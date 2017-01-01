@@ -24,17 +24,22 @@ a {
 .menu {
   width: 200px;
   height: 100vh;
+  padding-top: 30px;
   background-color: white;
 
   .brand {
     margin: 0;
     color: #666;
     font-size: 28px;
-    padding: 10px 0;
     text-align: center;
+    cursor: move;
+    user-select: none;
+    -webkit-app-region: drag;
   }
 }
 
 .container {
   flex: 1;
+  padding: 20px;
+  background-color: white;
 }

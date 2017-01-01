@@ -14,6 +14,6 @@ render(
   <Router history={hashHistory}>
     <Route path="/" component={Layout}>
       <IndexRoute component={Home} />
-      <Route path="/encoder" component={Encoder} />
+      <Route path="/Encoder" component={Encoder} />
     </Route>
   </Router>, document.getElementById('app'));
