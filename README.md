@@ -1,26 +1,14 @@
 DevBox
 ---
 
-An Desktop application for developers.
-
-![devbox](./screenshot/home.png)
-
-## Building
-
-```sh
-$ git clone https://github.com/SFantasy/devbox
-$ cd devbox
-$ npm install
-$ npm run webpack:build
-$ npm start
-```
+A desktop application for developers.
 
 ## Development
 
 ```sh
-$ npm run webpack:watch
+$ npm run app
 // Open another tab in your terminal
-$ npm start --debug
+$ npm start
 ```
 
 ## License
