@@ -12,34 +12,48 @@
     "url": "git+https://github.com/SFantasy/devbox.git"
   },
   "scripts": {
-    "start": "electron .",
-    "dev": "electron . --debug",
-    "webpack:build": "NODE_ENV=production webpack --config webpack.production.config.js--progress -v -c -p",
-    "webpack:watch": "webpack --progress -v -c --watch"
+    "start": "node server.js",
+    "app": "electron .",
+    "app-dev": "electron . --debug",
+    "lint": "./node_modules/.bin/eslint src/ main.js",
+    "webpack:build": "NODE_ENV=production webpack --config webpack.production.config.js --progress --profile -c -p"
   },
   "dependencies": {
+    "antd": "^2.5.2",
+    "electron": "^1.4.13",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
-    "electron-prebuilt": "^1.3.1"
+    "react-router": "^3.0.0"
   },
   "devDependencies": {
-    "babel": "^6.5.2",
+    "autoprefixer": "^6.5.4",
     "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.11.1",
-    "babel-preset-stage-0": "^6.5.0",
-    "css-loader": "^0.23.1",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-react-app": "^2.0.1",
+    "babel-preset-stage-0": "^6.16.0",
+    "css-loader": "^0.26.1",
+    "electron-devtools-installer": "^2.0.1",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "express": "^4.14.0",
     "file-loader": "^0.9.0",
-    "html-loader": "^0.4.3",
+    "html-loader": "^0.4.4",
     "json-loader": "^0.5.4",
     "markdown-loader": "^0.1.7",
-    "node-sass": "^3.8.0",
-    "octicons": "^4.3.0",
-    "react-router": "^2.6.0",
+    "node-sass": "^4.1.1",
+    "octicons": "^5.0.1",
+    "postcss-loader": "^1.2.1",
+    "react-hot-loader": "^1.3.1",
+    "react-router": "^3.0.0",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-dashboard": "^0.2.0",
+    "webpack-dev-middleware": "^1.9.0",
+    "webpack-dev-server": "^1.16.2",
+    "webpack-hot-middleware": "^2.13.2"
   }
 }
