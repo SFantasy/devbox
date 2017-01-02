@@ -8,6 +8,8 @@ import 'antd/dist/antd.css';
 import Layout from './Layout';
 import Home from './Home';
 import Encoder from './Encoder';
+import About from './About';
+
 import './app.scss';
 
 render(
@@ -15,5 +17,6 @@ render(
     <Route path="/" component={Layout}>
       <IndexRoute component={Home} />
       <Route path="/Encoder" component={Encoder} />
+      <Route path="/About" component={About} />
     </Route>
   </Router>, document.getElementById('app'));
