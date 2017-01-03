@@ -9,6 +9,7 @@ import Layout from './Layout';
 import Home from './Home';
 import Encoder from './Encoder';
 import REST from './REST';
+import Setting from './Setting';
 import About from './About';
 
 import './app.scss';
@@ -19,6 +20,7 @@ render(
       <IndexRoute component={Home} />
       <Route path="/encoder" component={Encoder} />
       <Route path="/rest" component={REST} />
+      <Route path="/setting" component={Setting} />
       <Route path="/about" component={About} />
     </Route>
   </Router>, document.getElementById('app'));
