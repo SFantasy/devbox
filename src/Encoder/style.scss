@@ -1,0 +1,16 @@
+.encoder {
+  height: 100%;
+
+  .ant-input {
+    margin-top: 20px;
+    resize: none;
+    height: calc(100% - 50px);
+  }
+}
+
+.encoder-bar {
+  .ant-btn {
+    margin-left: 10px;
+    font-weight: normal;
+  }
+}
