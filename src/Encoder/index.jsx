@@ -19,6 +19,7 @@ export default class Encoder extends Component {
 
     this.encode = this.encode.bind(this);
     this.decode = this.decode.bind(this);
+    this.clear = this.clear.bind(this);
 
     this.state = {
       type: ENCODER_TYPES[0],
@@ -70,6 +71,12 @@ export default class Encoder extends Component {
     });
   }
 
+  clear() {
+    this.setState({
+      text: '',
+    });
+  }
+
   render() {
     const {
       type,
@@ -95,6 +102,7 @@ export default class Encoder extends Component {
           </Select>
           <Button onClick={this.encode}>Encode</Button>
           <Button onClick={this.decode}>Decode</Button>
+          <Button onClick={this.clear}>Clear</Button>
         </div>
         <Input
           type="textarea"
