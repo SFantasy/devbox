@@ -11,7 +11,7 @@ import './style.scss';
 
 const Option = Select.Option;
 
-const ENCODER_TYPES = ['BASE64', 'MD5', 'SHA'];
+const ENCODER_TYPES = ['BASE64', 'MD5', 'SHA1'];
 
 export default class Encoder extends Component {
   constructor(props) {
@@ -30,14 +30,19 @@ export default class Encoder extends Component {
     const { type, text } = this.state;
 
     let encodedText = '';
+    let cryptedType;
 
     switch (type) {
       case 'BASE64':
         encodedText = new Buffer(text).toString('base64');
         break;
       case 'MD5':
-        let md5 = crypto.createHash('md5');
-        encodedText = md5.update(text).digest('hex');
+        cryptedType = crypto.createHash('md5');
+        encodedText = cryptedType.update(text).digest('hex');
+        break;
+      case 'SHA1':
+        cryptedType = crypto.createHash('sha1');
+        encodedText = cryptedType.update(text).digest('hex');
         break;
       default:
     }
