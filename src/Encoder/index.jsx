@@ -3,13 +3,15 @@ import {
   Select,
   Button,
   Input,
+  message,
 } from 'antd';
+import crypto from 'crypto';
 
 import './style.scss';
 
 const Option = Select.Option;
 
-const ENCODER_TYPES = ['base64', 'md5'];
+const ENCODER_TYPES = ['BASE64', 'MD5', 'SHA'];
 
 export default class Encoder extends Component {
   constructor(props) {
@@ -22,6 +24,45 @@ export default class Encoder extends Component {
       type: ENCODER_TYPES[0],
       text: '',
     };
+  }
+
+  encode() {
+    const { type, text } = this.state;
+
+    let encodedText = '';
+
+    switch (type) {
+      case 'BASE64':
+        encodedText = new Buffer(text).toString('base64');
+        break;
+      case 'MD5':
+        let md5 = crypto.createHash('md5');
+        encodedText = md5.update(text).digest('hex');
+        break;
+      default:
+    }
+
+    this.setState({
+      text: encodedText,
+    });
+  }
+
+  decode() {
+    const { type, text } = this.state;
+
+    let decodedText = '';
+
+    switch (type) {
+      case 'BASE64':
+        decodedText = new Buffer(text, 'base64');
+        break;
+      default:
+        message.warn(`${type} doesn't suppor decode.`);
+    }
+
+    this.setState({
+      text: decodedText,
+    });
   }
 
   render() {
@@ -63,37 +104,4 @@ export default class Encoder extends Component {
     );
   }
 
-  encode() {
-    const { type, text } = this.state;
-
-    let encodedText = '';
-
-    switch (type) {
-      case 'base64':
-        encodedText = new Buffer(text).toString('base64');
-        break;
-      default:
-    }
-
-    this.setState({
-      text: encodedText,
-    });
-  }
-
-  decode() {
-    const { type, text } = this.state;
-
-    let decodedText = '';
-
-    switch (type) {
-      case 'base64':
-        decodedText = new Buffer(text, 'base64');
-        break;
-      default:
-    }
-
-    this.setState({
-      text: decodedText,
-    });
-  }
 }
