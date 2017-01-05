@@ -61,6 +61,11 @@ export default class Encoder extends Component {
     switch (type) {
       case 'BASE64':
         decodedText = new Buffer(text, 'base64');
+        try {
+          decodedText = JSON.stringify(JSON.parse(decodedText), null, '  ');
+        } catch (err) {
+          //
+        }
         break;
       default:
         message.warn(`${type} doesn't suppor decode.`);
