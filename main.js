@@ -15,7 +15,7 @@ function createWindow() {
     titleBarStyle: 'hidden',
   });
 
-  mainWindow.loadURL(process.env.NODE_ENV === 'development' ? `file://${__dirname}/index.html` : 'http://localhost:3000');
+  mainWindow.loadURL(debug ? 'http://localhost:3000' : `file://${__dirname}/index.html`);
 
   if (debug) mainWindow.webContents.openDevTools();
 
