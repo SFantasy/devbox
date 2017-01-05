@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "description": "An Desktop application for developers",
   "author": "Fantasy <fantasyshao@icloud.com>",
-  "license": "MIT",
+  "license": "GPLv3",
   "main": "main.js",
   "repository": {
     "type": "git",
@@ -16,11 +16,42 @@
     "app": "electron .",
     "app-dev": "electron . --debug",
     "lint": "./node_modules/.bin/eslint src/ main.js",
-    "webpack:build": "NODE_ENV=production webpack --config webpack.production.config.js --progress --profile -c -p"
+    "bundle": "NODE_ENV=production webpack --config webpack.production.config.js --progress --profile -c -p",
+    "pack": "build --dir",
+    "dist": "build"
+  },
+  "build": {
+    "productName": "DevBox",
+    "appId": "code.fantasy.DevBox",
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": "dmg"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 220,
+          "type": "file"
+        }
+      ]
+    },
+    "files": [
+      "dest/",
+      "node_modules/",
+      "index.html",
+      "main.js",
+      "package.json"
+    ]
   },
   "dependencies": {
     "antd": "^2.5.2",
-    "electron": "^1.4.13",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-router": "^3.0.0"
@@ -34,6 +65,8 @@
     "babel-preset-react-app": "^2.0.1",
     "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.26.1",
+    "electron": "^1.4.13",
+    "electron-builder": "^10.17.3",
     "electron-devtools-installer": "^2.0.1",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
