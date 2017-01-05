@@ -20,9 +20,9 @@ module.exports = {
   ],
 
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'dest'),
     filename: 'app.bundle.js',
-    publicPath: '/dist/',
+    publicPath: '/dest/',
   },
 
   module: {
@@ -39,7 +39,7 @@ module.exports = {
     }, {
       test: /\.(png|woff|woff2|eot|ttf|svg)/,
       loader: 'url-loader?limit=100000',
-    }]
+    }],
   },
 
   postcss: function () {
