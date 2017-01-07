@@ -18,4 +18,4 @@ Pull requests and [issues](https://github.com/SFantasy/devbox/issues) are welcom
 
 ## License
 
-Liensed under [GPLv3](LICENSE).
+Licensed under [GPLv3](LICENSE).
