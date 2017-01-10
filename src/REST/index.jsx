@@ -7,6 +7,8 @@ import {
   Button,
   Tabs,
   Collapse,
+  Table,
+  Icon,
   message,
 } from 'antd';
 
@@ -58,12 +60,47 @@ export default class RESTool extends Component {
             <Tabs>
               <TabPane tab="Request" key="1">
                 <Collapse bordered={false} defaultActiveKey={['1', '2', '3']}>
-                  <Panel header="Headers" key="1"></Panel>
-                  <Panel header="Request Parameters" key="2"></Panel>
-                  <Panel header="Request Body" key="3"></Panel>
+                  <Panel header="Headers" key="1">
+                    <Table
+                      bordered={true}
+                      columns={[{
+                        title: 'name',
+                      }, {
+                        title: 'value',
+                      }]}
+                    />
+                  </Panel>
+                  <Panel header="Request Parameters" key="2">
+                    <Table
+                      bordered={true}
+                      columns={[{
+                        title: 'name',
+                      }, {
+                        title: 'value',
+                      }]}
+                    />
+                  </Panel>
+                  <Panel header="Request Body" key="3">
+                    <Input type="textarea" />
+                  </Panel>
                 </Collapse>
               </TabPane>
-              <TabPane tab="Cookie" key="2"></TabPane>
+              <TabPane tab="Cookie" key="2">
+                <Table
+                  bordered={true}
+                  columns={[{
+                    title: 'Name',
+                  }, {
+                    title: 'Value',
+                  }, {
+                    title: 'Domain',
+                  }, {
+                    title: 'Path',
+                  }, {
+                    title: 'Expires',
+                  }]}
+                />
+              </TabPane>
             </Tabs>
           </Col>
           <Col span={14}>
