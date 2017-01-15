@@ -7,3 +7,18 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.editable-cell {
+
+  .editable-text,
+  .editable-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .editable-icon {
+    cursor: pointer;
+  }
+}

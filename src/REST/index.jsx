@@ -18,6 +18,7 @@ import {
 } from 'antd';
 
 import './style.scss';
+import EditableCell from './EditableCell';
 
 const Option = Select.Option;
 const TabPane = Tabs.TabPane;
@@ -31,11 +32,20 @@ export default class RESTool extends Component {
   constructor(props) {
     super(props);
 
+    this.addHeaderField = this.addHeaderField.bind(this);
+
     this.state = {
       method: METHODS[0],
       url: '',
       response: '',
+      headers: [],
     };
+  }
+
+  addHeaderField() {
+    this.setState({
+      headers: [...this.state.headers, { name: '', value: '' }],
+    });
   }
 
   render() {
@@ -43,6 +53,7 @@ export default class RESTool extends Component {
       method,
       url,
       response,
+      headers,
     } = this.state;
 
     return (
@@ -85,23 +96,36 @@ export default class RESTool extends Component {
                 <Collapse bordered={false} defaultActiveKey={['1', '2', '3']}>
                   <Panel header="Headers" key="1">
                     <Table
+                      style={{ marginBottom: 10 }}
                       bordered={true}
+                      pagination={false}
+                      dataSource={headers}
                       columns={[{
                         title: 'name',
+                        dataIndex: 'name',
+                        render: () => <EditableCell />
                       }, {
                         title: 'value',
+                        dataIndex: 'value',
+                        render: () => <EditableCell />
                       }]}
                     />
+                    <Button icon="plus" onClick={this.addHeaderField} />
                   </Panel>
                   <Panel header="Request Parameters" key="2">
                     <Table
+                      style={{ marginBottom: 10 }}
                       bordered={true}
+                      pagination={false}
                       columns={[{
                         title: 'name',
+                        dataIndex: 'name',
                       }, {
                         title: 'value',
+                        dataIndex: 'value',
                       }]}
                     />
+                    <Button icon="plus" />
                   </Panel>
                   <Panel header="Request Body" key="3">
                     <Input type="textarea" autosize={{ minRows: 5 }} />
