@@ -33,12 +33,15 @@ export default class RESTool extends Component {
     super(props);
 
     this.addHeaderField = this.addHeaderField.bind(this);
+    this.addParam = this.params.bind(this);
 
     this.state = {
       method: METHODS[0],
       url: '',
       response: '',
       headers: [],
+      params: [],
+      cookies: [],
     };
   }
 
@@ -48,12 +51,34 @@ export default class RESTool extends Component {
     });
   }
 
+  addParam() {
+    this.setState({
+      params: [...this.state.params, { name: '', value: '' }],
+    })
+  }
+
+  addCookis() {
+    this.setState({
+      cookies: [
+        ...this.state.cookies,
+        {
+          name: '',
+          value: '',
+          domain: '',
+          path: '/',
+          expires: '',
+        }],
+    })
+  }
+
   render() {
     const {
       method,
       url,
       response,
       headers,
+      params,
+      cookies,
     } = this.state;
 
     return (
@@ -117,6 +142,7 @@ export default class RESTool extends Component {
                       style={{ marginBottom: 10 }}
                       bordered={true}
                       pagination={false}
+                      dataSource={params}
                       columns={[{
                         title: 'name',
                         dataIndex: 'name',
@@ -135,16 +161,22 @@ export default class RESTool extends Component {
               <TabPane tab="Cookie" key="2">
                 <Table
                   bordered={true}
+                  dataSource={cookies}
                   columns={[{
                     title: 'Name',
+                    dataIndex: 'name',
                   }, {
                     title: 'Value',
+                    dataIndex: 'value',
                   }, {
                     title: 'Domain',
+                    dataIndex: 'domain',
                   }, {
                     title: 'Path',
+                    dataIndex: 'path',
                   }, {
                     title: 'Expires',
+                    dataIndex: 'expires',
                   }]}
                 />
               </TabPane>
