@@ -26,6 +26,8 @@ export default class EditableCell extends Component {
                 onChange={(e) => {
                   this.setState({
                     value: e.target.value,
+                  }, () => {
+                    this.props.onChange(this.state.value);
                   });
                 }}
               />
