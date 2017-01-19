@@ -3,6 +3,7 @@
  */
 
 import React, { Component } from 'react';
+import update from 'react/lib/update';
 import request from 'superagent';
 import {
   Row,
@@ -33,7 +34,8 @@ export default class RESTool extends Component {
     super(props);
 
     this.addHeaderField = this.addHeaderField.bind(this);
-    this.addParam = this.params.bind(this);
+    this.addParam = this.addParam.bind(this);
+    this.addCookies = this.addCookies.bind(this);
 
     this.state = {
       method: METHODS[0],
@@ -47,17 +49,30 @@ export default class RESTool extends Component {
 
   addHeaderField() {
     this.setState({
-      headers: [...this.state.headers, { name: '', value: '' }],
+      headers: [
+        ...this.state.headers,
+        {
+          id: this.state.headers.length,
+          name: '',
+          value: '',
+        }
+      ],
     });
   }
 
   addParam() {
     this.setState({
-      params: [...this.state.params, { name: '', value: '' }],
-    })
+      params: [
+        ...this.state.params,
+        {
+          id: this.state.params.length,
+          name: '',
+          value: '',
+        }],
+    });
   }
 
-  addCookis() {
+  addCookies() {
     this.setState({
       cookies: [
         ...this.state.cookies,
@@ -125,14 +140,37 @@ export default class RESTool extends Component {
                       bordered={true}
                       pagination={false}
                       dataSource={headers}
+                      rowKey={(record) => record.id}
                       columns={[{
                         title: 'name',
                         dataIndex: 'name',
-                        render: () => <EditableCell />
+                        render: (text, record, index) => <EditableCell onChange={(value) => {
+                          this.setState({
+                            headers: update(headers, {
+                              $splice: [[
+                                index, 1, {
+                                  name: value,
+                                  value: headers[index].value,
+                                },
+                              ]]
+                            })
+                          });
+                        }} />
                       }, {
                         title: 'value',
                         dataIndex: 'value',
-                        render: () => <EditableCell />
+                        render: (text, record, index) => <EditableCell onChange={(value) => {
+                          this.setState({
+                            headers: update(headers, {
+                              $splice: [[
+                                index, 1, {
+                                  name: headers[index].name,
+                                  value,
+                                }
+                              ]]
+                            })
+                          });
+                        }} />
                       }]}
                     />
                     <Button icon="plus" onClick={this.addHeaderField} />
@@ -211,6 +249,7 @@ export default class RESTool extends Component {
     const {
       url,
       method,
+      headers,
     } = this.state;
 
     if (!url.length) return message.warn('URL is empty');
@@ -218,7 +257,17 @@ export default class RESTool extends Component {
 
     message.info('Start requesting...');
 
+    let requestHeaders = {};
+
+    headers.forEach((header) => {
+      if (header.name && header.name.length)
+        requestHeaders[header.name] = header.value;
+    });
+
+    console.log(requestHeaders);
+
     request(method, url)
+      .set(requestHeaders)
       .end((err, res) => {
         message.info('Request completed.');
 
