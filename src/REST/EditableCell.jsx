@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   Input,
   Icon,
@@ -8,6 +8,14 @@ export default class EditableCell extends Component {
   state = {
     value: this.props.value,
     editable: false,
+  };
+
+  propTypes = {
+    onChange: PropTypes.func,
+  };
+
+  defaultProps = {
+    onChange() {}
   };
 
   render() {
@@ -27,7 +35,7 @@ export default class EditableCell extends Component {
                   this.setState({
                     value: e.target.value,
                   }, () => {
-                    this.props.onChange(this.state.value);
+
                   });
                 }}
               />
@@ -37,6 +45,8 @@ export default class EditableCell extends Component {
                 onClick={() => {
                   this.setState({
                     editable: false,
+                  }, () => {
+                    this.props.onChange(this.state.value);
                   });
                 }}
               />
