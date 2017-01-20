@@ -10,11 +10,11 @@ export default class EditableCell extends Component {
     editable: false,
   };
 
-  propTypes = {
+  static propTypes = {
     onChange: PropTypes.func,
   };
 
-  defaultProps = {
+  static defaultProps = {
     onChange() {}
   };
 
