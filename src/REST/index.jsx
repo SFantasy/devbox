@@ -180,16 +180,41 @@ export default class RESTool extends Component {
                       style={{ marginBottom: 10 }}
                       bordered={true}
                       pagination={false}
+                      rowKey={(record) => record.id}
                       dataSource={params}
                       columns={[{
                         title: 'name',
                         dataIndex: 'name',
+                        render: (text, record, index) => <EditableCell onChange={(value) => {
+                          this.setState({
+                            params: update(params, {
+                              $splice: [[
+                                index, 1, {
+                                  name: params[index].name,
+                                  value,
+                                }
+                              ]]
+                            })
+                          });
+                        }} />
                       }, {
                         title: 'value',
                         dataIndex: 'value',
+                        render: (text, record, index) => <EditableCell onChange={(value) => {
+                          this.setState({
+                            params: update(params, {
+                              $splice: [[
+                                index, 1, {
+                                  name: value,
+                                  value: params[index].value,
+                                }
+                              ]]
+                            })
+                          });
+                        }} />
                       }]}
                     />
-                    <Button icon="plus" />
+                    <Button icon="plus" onClick={this.addParam} />
                   </Panel>
                   <Panel header="Request Body" key="3">
                     <Input type="textarea" autosize={{ minRows: 5 }} />
@@ -250,6 +275,7 @@ export default class RESTool extends Component {
       url,
       method,
       headers,
+      params,
     } = this.state;
 
     if (!url.length) return message.warn('URL is empty');
@@ -264,9 +290,12 @@ export default class RESTool extends Component {
         requestHeaders[header.name] = header.value;
     });
 
-    console.log(requestHeaders);
+    let spliced_params = params.map((param) => {
+      if (param.name && param.name.length)
+        return `${param.name}=${param.value}`;
+    }).join('&');
 
-    request(method, url)
+    request(method, `${url}?${spliced_params}`)
       .set(requestHeaders)
       .end((err, res) => {
         message.info('Request completed.');
